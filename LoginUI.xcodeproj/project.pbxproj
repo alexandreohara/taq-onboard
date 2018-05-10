@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D32C44220A3781000F19530 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D32C44120A3781000F19530 /* WelcomeViewController.swift */; };
+		4D93AA1320A4983A00437BBD /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93AA1220A4983A00437BBD /* TableViewCell.swift */; };
 		4D95FD1A209BC1710076E0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D95FD19209BC1710076E0FD /* AppDelegate.swift */; };
 		4D95FD1C209BC1710076E0FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D95FD1B209BC1710076E0FD /* ViewController.swift */; };
 		4D95FD1F209BC1710076E0FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D95FD1D209BC1710076E0FD /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		4D32C44120A3781000F19530 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		4D93AA1220A4983A00437BBD /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4D95FD16209BC1710076E0FD /* LoginUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D95FD19209BC1710076E0FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D95FD1B209BC1710076E0FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				4D95FD19209BC1710076E0FD /* AppDelegate.swift */,
 				4D95FD1B209BC1710076E0FD /* ViewController.swift */,
 				4D32C44120A3781000F19530 /* WelcomeViewController.swift */,
+				4D93AA1220A4983A00437BBD /* TableViewCell.swift */,
 				4D95FD1D209BC1710076E0FD /* Main.storyboard */,
 				4D95FD20209BC1720076E0FD /* Assets.xcassets */,
 				4D95FD22209BC1720076E0FD /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D32C44220A3781000F19530 /* WelcomeViewController.swift in Sources */,
+				4D93AA1320A4983A00437BBD /* TableViewCell.swift in Sources */,
 				4D95FD1C209BC1710076E0FD /* ViewController.swift in Sources */,
 				4D95FD1A209BC1710076E0FD /* AppDelegate.swift in Sources */,
 			);
