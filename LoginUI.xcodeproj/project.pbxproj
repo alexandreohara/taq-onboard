@@ -58,11 +58,11 @@
 			children = (
 				4D95FD19209BC1710076E0FD /* AppDelegate.swift */,
 				4D95FD1B209BC1710076E0FD /* ViewController.swift */,
+				4D32C44120A3781000F19530 /* WelcomeViewController.swift */,
 				4D95FD1D209BC1710076E0FD /* Main.storyboard */,
 				4D95FD20209BC1720076E0FD /* Assets.xcassets */,
 				4D95FD22209BC1720076E0FD /* LaunchScreen.storyboard */,
 				4D95FD25209BC1720076E0FD /* Info.plist */,
-				4D32C44120A3781000F19530 /* WelcomeViewController.swift */,
 			);
 			path = LoginUI;
 			sourceTree = "<group>";
