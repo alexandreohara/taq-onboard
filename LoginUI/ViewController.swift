@@ -8,6 +8,18 @@
 
 import UIKit
 
+struct Database: Codable {
+    let data: [User]?
+    let pagination: Pagination?
+}
+
+struct Pagination: Codable {
+    let page: Int?
+    let window: Int?
+    let total: Int?
+    let totalPages: Int?
+}
+
 struct Login: Codable {
     let data: Data?
     let errors: [Error]?
@@ -36,6 +48,7 @@ struct User: Codable {
     let salt: String?
     let name: String?
     let role: String?
+    
 }
 
 class ViewController: UIViewController {
