@@ -24,6 +24,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         navigationItem.title = "Users"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
     }
     
     
@@ -58,11 +59,23 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
         cell.userText.text = usersArray[indexPath.row].name
         cell.roleText.text = usersArray[indexPath.row].role
+        //cell.userText.text = usersArrau[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? ProfileViewController {
+            destinationVC.id = usersArray[(tableView.indexPathForSelectedRow?.row)!].id!
+        }
+        
     }
     
     func getUserList(completion: @escaping(Database) -> ()) {

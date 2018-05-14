@@ -13,6 +13,10 @@ struct Database: Codable {
     let pagination: Pagination?
 }
 
+struct Profile: Codable {
+    let data: User?
+}
+
 struct Pagination: Codable {
     let page: Int?
     let window: Int?
@@ -92,7 +96,6 @@ class ViewController: UIViewController {
         remoteLogin(email: emailTextField.text!, password: passwordTextField.text!, completion: { (success) -> Void in
             DispatchQueue.main.async {
                 if success {
-                    print(UserDefaults.standard.string(forKey: "userName")!)
                     self.performSegue(withIdentifier: "goToWelcome", sender: self)
                     self.activityIndicator.stopAnimating()
                 }
