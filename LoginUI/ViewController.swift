@@ -58,10 +58,10 @@ struct User: Codable {
 class ViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var emailErrorTextField: UILabel!
+    @IBOutlet weak var emailError: UILabel!
 
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var passwordErrorTextField: UILabel!
+    @IBOutlet weak var passwordError: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessage: UILabel!
     
@@ -72,23 +72,23 @@ class ViewController: UIViewController {
         if(!isValidEmail(testStr: emailTextField.text!)) {
             print("Email inválido")
             emailTextField.layer.shadowColor = UIColor.red.cgColor
-            emailErrorTextField.isHidden = false
+            emailError.isHidden = false
             
         }
         
         else {
             emailTextField.layer.shadowColor = UIColor.gray.cgColor
-            emailErrorTextField.isHidden = true
+            emailError.isHidden = true
         }
         
         if(passwordTextField.text!.count < 4) {
             print("Senha inválida")
             passwordTextField.layer.shadowColor = UIColor.red.cgColor
-            passwordErrorTextField.isHidden = false
+            passwordError.isHidden = false
         }
         else {
             passwordTextField.layer.shadowColor = UIColor.gray.cgColor
-            passwordErrorTextField.isHidden = true
+            passwordError.isHidden = true
         }
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
@@ -155,9 +155,6 @@ class ViewController: UIViewController {
             
             guard let data = data else { return }
             do {
-                //   let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                //   print(json)
-                
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Login.self, from: data)
                 

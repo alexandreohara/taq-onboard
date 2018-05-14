@@ -14,15 +14,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var textView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    //var users = ["Tiba", "Alexandre", "Gabriel", "Leandro", "Rodrigo"]
-    //var roles = ["Administrator", "User", "User", "User", "User"]
     var usersArray: [User] = []
-    //var nameArray: [String] = []
-    //var roleArray: [String] = []
     
     fileprivate func navigationSetup() {
         navigationItem.title = "Users"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
@@ -59,7 +55,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
         cell.userText.text = usersArray[indexPath.row].name
         cell.roleText.text = usersArray[indexPath.row].role
-        //cell.userText.text = usersArrau[indexPath.row].name
         return cell
     }
     
@@ -98,8 +93,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             
             guard let data = data else { return }
             do {
-                //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                //print(json)
                 
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Database.self, from: data)
@@ -145,16 +138,5 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
