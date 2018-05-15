@@ -16,9 +16,11 @@
 		4D95FD1F209BC1710076E0FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D95FD1D209BC1710076E0FD /* Main.storyboard */; };
 		4D95FD21209BC1720076E0FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D95FD20209BC1720076E0FD /* Assets.xcassets */; };
 		4D95FD24209BC1720076E0FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D95FD22209BC1720076E0FD /* LaunchScreen.storyboard */; };
+		F99FF262625C18A7D5B1B290 /* Pods_LoginUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A635D29B41BCE0C38C4037E5 /* Pods_LoginUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B5CC1FA2769CC57762CC853 /* Pods-LoginUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoginUI/Pods-LoginUI.debug.xcconfig"; sourceTree = "<group>"; };
 		4D32C44120A3781000F19530 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		4D37A24920A9A88800D7CD5C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D37A24B20A9E74300D7CD5C /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +32,8 @@
 		4D95FD20209BC1720076E0FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D95FD23209BC1720076E0FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D95FD25209BC1720076E0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6714C060F8B05480A1164DF2 /* Pods-LoginUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LoginUI/Pods-LoginUI.release.xcconfig"; sourceTree = "<group>"; };
+		A635D29B41BCE0C38C4037E5 /* Pods_LoginUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99FF262625C18A7D5B1B290 /* Pods_LoginUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42EE49E3F576BBDD998B95C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A635D29B41BCE0C38C4037E5 /* Pods_LoginUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D95FD0D209BC1710076E0FD = {
 			isa = PBXGroup;
 			children = (
 				4D95FD18209BC1710076E0FD /* LoginUI */,
 				4D95FD17209BC1710076E0FD /* Products */,
+				8910A99D1963597AEBD1DEEB /* Pods */,
+				42EE49E3F576BBDD998B95C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +91,15 @@
 			path = LoginUI;
 			sourceTree = "<group>";
 		};
+		8910A99D1963597AEBD1DEEB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B5CC1FA2769CC57762CC853 /* Pods-LoginUI.debug.xcconfig */,
+				6714C060F8B05480A1164DF2 /* Pods-LoginUI.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +107,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D95FD28209BC1720076E0FD /* Build configuration list for PBXNativeTarget "LoginUI" */;
 			buildPhases = (
+				9F7188BADC18C52589068961 /* [CP] Check Pods Manifest.lock */,
 				4D95FD12209BC1710076E0FD /* Sources */,
 				4D95FD13209BC1710076E0FD /* Frameworks */,
 				4D95FD14209BC1710076E0FD /* Resources */,
+				339BAE4EFBBFB066756C8CBB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,6 +167,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		339BAE4EFBBFB066756C8CBB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LoginUI/Pods-LoginUI-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoginUI/Pods-LoginUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F7188BADC18C52589068961 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LoginUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D95FD12209BC1710076E0FD /* Sources */ = {
@@ -294,9 +361,11 @@
 		};
 		4D95FD29209BC1720076E0FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B5CC1FA2769CC57762CC853 /* Pods-LoginUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LoginUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,9 +380,11 @@
 		};
 		4D95FD2A209BC1720076E0FD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6714C060F8B05480A1164DF2 /* Pods-LoginUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LoginUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
