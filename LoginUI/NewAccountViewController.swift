@@ -25,52 +25,26 @@ class NewAccountViewController: UIViewController {
     var userRole: String = ""
     
     fileprivate func validateTextFields() -> Bool {
+        
         let vc: ViewController = ViewController()
         var isValid: Bool = true
-        if (!containOnlyLetters(testStr: nameTextField.text!)) {
-            nameTextField.layer.shadowColor = UIColor.red.cgColor
-            nameError.isHidden = false
-             isValid = false
-        }
-        else {
-            nameTextField.layer.shadowColor = UIColor.gray.cgColor
-            nameError.isHidden = true
-        }
-        if(!vc.isValidEmail(testStr: emailTextField.text!)) {
-            emailTextField.layer.shadowColor = UIColor.red.cgColor
-            emailError.isHidden = false
-            isValid = false
-        }
-            
-        else {
-            emailTextField.layer.shadowColor = UIColor.gray.cgColor
-            emailError.isHidden = true
-        }
         
-        if(passwordTextField.text!.count < 4) {
-            passwordTextField.layer.shadowColor = UIColor.red.cgColor
-            passwordError.isHidden = false
-            isValid = false
-        }
-        else {
-            passwordTextField.layer.shadowColor = UIColor.gray.cgColor
-            passwordError.isHidden = true
-        }
-        if(passwordTextField.text! != confirmPassTextField.text!) {
-            confirmPassTextField.layer.shadowColor = UIColor.red.cgColor
-            confirmPasswordError.isHidden = false
-            isValid = false
-        }
-        else {
-            confirmPassTextField.layer.shadowColor = UIColor.gray.cgColor
-            confirmPasswordError.isHidden = true
-        }
-        if(admSwitch.isOn) {
-            userRole = "admin"
-        }
-        else {
-            userRole = "user"
-        }
+        nameTextField.layer.shadowColor = containOnlyLetters(testStr: nameTextField.text!) == true ? UIColor.gray.cgColor : UIColor.red.cgColor
+        nameError.isHidden = containOnlyLetters(testStr: nameTextField.text!) == true ? true : false
+        
+        emailTextField.layer.shadowColor = vc.isValidEmail(testStr: emailTextField.text!) == true ? UIColor.gray.cgColor : UIColor.red.cgColor
+        emailError.isHidden = vc.isValidEmail(testStr: emailTextField.text!) == true ? true : false
+        
+        passwordTextField.layer.shadowColor = passwordTextField.text!.count < 4 ? UIColor.red.cgColor : UIColor.gray.cgColor
+        passwordError.isHidden = passwordTextField.text!.count < 4 ? false : true
+        
+        confirmPassTextField.layer.shadowColor = passwordTextField.text! != confirmPassTextField.text! ? UIColor.red.cgColor : UIColor.gray.cgColor
+        confirmPasswordError.isHidden = passwordTextField.text! != confirmPassTextField.text! ? false : true
+        
+        if (containOnlyLetters(testStr: nameTextField.text!) == false || vc.isValidEmail(testStr: emailTextField.text!) == true ||
+            passwordTextField.text!.count < 4 || passwordTextField.text! != confirmPassTextField.text!) {isValid = false}
+        
+        userRole = admSwitch.isOn ? "admin" : "user"
         return isValid
     }
     
@@ -113,12 +87,10 @@ class NewAccountViewController: UIViewController {
         passwordTextField.setBottomBorder()
         confirmPassTextField.setBottomBorder()
         navigationItem.title = "Create new account"
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

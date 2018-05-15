@@ -68,28 +68,16 @@ class ViewController: UIViewController {
     var loginResult = false
     
     
+    fileprivate func validateLogin() {
+        emailTextField.layer.shadowColor = isValidEmail(testStr: emailTextField.text!) == false ? UIColor.red.cgColor : UIColor.gray.cgColor
+        emailError.isHidden = isValidEmail(testStr: emailTextField.text!) == false ? false : true
+        
+        passwordTextField.layer.shadowColor = passwordTextField.text!.count < 4 ? UIColor.red.cgColor : UIColor.gray.cgColor
+        passwordError.isHidden = passwordTextField.text!.count < 4 ? false : true
+    }
+    
     @IBAction func button(_ sender: Any) {
-        if(!isValidEmail(testStr: emailTextField.text!)) {
-            print("Email inválido")
-            emailTextField.layer.shadowColor = UIColor.red.cgColor
-            emailError.isHidden = false
-            
-        }
-        
-        else {
-            emailTextField.layer.shadowColor = UIColor.gray.cgColor
-            emailError.isHidden = true
-        }
-        
-        if(passwordTextField.text!.count < 4) {
-            print("Senha inválida")
-            passwordTextField.layer.shadowColor = UIColor.red.cgColor
-            passwordError.isHidden = false
-        }
-        else {
-            passwordTextField.layer.shadowColor = UIColor.gray.cgColor
-            passwordError.isHidden = true
-        }
+        validateLogin()
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         

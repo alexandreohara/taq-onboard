@@ -18,7 +18,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     fileprivate func navigationSetup() {
         navigationItem.title = "Users"
-        //navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
