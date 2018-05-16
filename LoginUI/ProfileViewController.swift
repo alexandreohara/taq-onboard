@@ -28,8 +28,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Profile"
-        
-        getUserProfile { (profile) in
+        let user = UserService()
+        user.getUserProfile(id: id!) { (profile) in
             DispatchQueue.main.async {
                 self.displayUserData(profile)
             }
@@ -39,40 +39,5 @@ class ProfileViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func getUserProfile(completion: @escaping(Profile) -> ()) {
-        let baseUrl = "https://tq-template-server-sample.herokuapp.com/users/" + String(id!)
-        
-        guard let url = URL(string: baseUrl) else {return}
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(UserDefaults.standard.string(forKey: "token"), forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-            var responseDatabase: Profile
-            if let requestError = error {
-                print(requestError)
-                return
-            }
-            
-            guard let data = data else { return }
-            do {
-                
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(Profile.self, from: data)
-                
-                if response.data != nil {
-                    responseDatabase = response
-                    completion(responseDatabase)
-                }
-                
-            } catch let err {
-                print(err)
-                return
-            }
-        }
-        task.resume()
     }
 }

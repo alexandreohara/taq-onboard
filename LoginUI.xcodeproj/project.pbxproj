@@ -10,6 +10,19 @@
 		4D32C44220A3781000F19530 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D32C44120A3781000F19530 /* WelcomeViewController.swift */; };
 		4D37A24A20A9A88800D7CD5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A24920A9A88800D7CD5C /* ProfileViewController.swift */; };
 		4D37A24C20A9E74300D7CD5C /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A24B20A9E74300D7CD5C /* NewAccountViewController.swift */; };
+		4D37A24E20AC989600D7CD5C /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A24D20AC989600D7CD5C /* Login.swift */; };
+		4D37A25020AC98BB00D7CD5C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A24F20AC98BB00D7CD5C /* Data.swift */; };
+		4D37A25220AC98DD00D7CD5C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25120AC98DD00D7CD5C /* Error.swift */; };
+		4D37A25420AC990200D7CD5C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25320AC990200D7CD5C /* User.swift */; };
+		4D37A25620AC992E00D7CD5C /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25520AC992E00D7CD5C /* Pagination.swift */; };
+		4D37A25820AC994E00D7CD5C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25720AC994E00D7CD5C /* Profile.swift */; };
+		4D37A25A20AC998700D7CD5C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25920AC998700D7CD5C /* Database.swift */; };
+		4D37A25D20AC9A9D00D7CD5C /* UITextField+BottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25C20AC9A9D00D7CD5C /* UITextField+BottomBorder.swift */; };
+		4D37A25F20AC9B6000D7CD5C /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A25E20AC9B6000D7CD5C /* LoginService.swift */; };
+		4D37A26120ACA1AA00D7CD5C /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A26020ACA1AA00D7CD5C /* FormValidator.swift */; };
+		4D37A26320ACB6F800D7CD5C /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A26220ACB6F800D7CD5C /* CreateAccount.swift */; };
+		4D37A26520ACBA2100D7CD5C /* UserListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A26420ACBA2100D7CD5C /* UserListService.swift */; };
+		4D37A26720ACBC0200D7CD5C /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37A26620ACBC0200D7CD5C /* UserService.swift */; };
 		4D93AA1320A4983A00437BBD /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93AA1220A4983A00437BBD /* TableViewCell.swift */; };
 		4D95FD1A209BC1710076E0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D95FD19209BC1710076E0FD /* AppDelegate.swift */; };
 		4D95FD1C209BC1710076E0FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D95FD1B209BC1710076E0FD /* ViewController.swift */; };
@@ -24,6 +37,19 @@
 		4D32C44120A3781000F19530 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		4D37A24920A9A88800D7CD5C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D37A24B20A9E74300D7CD5C /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
+		4D37A24D20AC989600D7CD5C /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		4D37A24F20AC98BB00D7CD5C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		4D37A25120AC98DD00D7CD5C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		4D37A25320AC990200D7CD5C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4D37A25520AC992E00D7CD5C /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		4D37A25720AC994E00D7CD5C /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		4D37A25920AC998700D7CD5C /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		4D37A25C20AC9A9D00D7CD5C /* UITextField+BottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+BottomBorder.swift"; sourceTree = "<group>"; };
+		4D37A25E20AC9B6000D7CD5C /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		4D37A26020ACA1AA00D7CD5C /* FormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
+		4D37A26220ACB6F800D7CD5C /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		4D37A26420ACBA2100D7CD5C /* UserListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListService.swift; sourceTree = "<group>"; };
+		4D37A26620ACBC0200D7CD5C /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		4D93AA1220A4983A00437BBD /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4D95FD16209BC1710076E0FD /* LoginUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D95FD19209BC1710076E0FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +82,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4D37A25B20AC9A2300D7CD5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4D37A25C20AC9A9D00D7CD5C /* UITextField+BottomBorder.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4D95FD0D209BC1710076E0FD = {
 			isa = PBXGroup;
 			children = (
@@ -82,11 +116,24 @@
 				4D32C44120A3781000F19530 /* WelcomeViewController.swift */,
 				4D37A24920A9A88800D7CD5C /* ProfileViewController.swift */,
 				4D37A24B20A9E74300D7CD5C /* NewAccountViewController.swift */,
-				4D93AA1220A4983A00437BBD /* TableViewCell.swift */,
+				4D37A25E20AC9B6000D7CD5C /* LoginService.swift */,
+				4D37A26020ACA1AA00D7CD5C /* FormValidator.swift */,
+				4D37A26420ACBA2100D7CD5C /* UserListService.swift */,
+				4D37A26620ACBC0200D7CD5C /* UserService.swift */,
+				4D37A26220ACB6F800D7CD5C /* CreateAccount.swift */,
 				4D95FD1D209BC1710076E0FD /* Main.storyboard */,
 				4D95FD20209BC1720076E0FD /* Assets.xcassets */,
 				4D95FD22209BC1720076E0FD /* LaunchScreen.storyboard */,
 				4D95FD25209BC1720076E0FD /* Info.plist */,
+				4D93AA1220A4983A00437BBD /* TableViewCell.swift */,
+				4D37A25920AC998700D7CD5C /* Database.swift */,
+				4D37A24D20AC989600D7CD5C /* Login.swift */,
+				4D37A24F20AC98BB00D7CD5C /* Data.swift */,
+				4D37A25120AC98DD00D7CD5C /* Error.swift */,
+				4D37A25320AC990200D7CD5C /* User.swift */,
+				4D37A25520AC992E00D7CD5C /* Pagination.swift */,
+				4D37A25720AC994E00D7CD5C /* Profile.swift */,
+				4D37A25B20AC9A2300D7CD5C /* Extensions */,
 			);
 			path = LoginUI;
 			sourceTree = "<group>";
@@ -214,12 +261,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D37A24E20AC989600D7CD5C /* Login.swift in Sources */,
+				4D37A25820AC994E00D7CD5C /* Profile.swift in Sources */,
+				4D37A26520ACBA2100D7CD5C /* UserListService.swift in Sources */,
 				4D32C44220A3781000F19530 /* WelcomeViewController.swift in Sources */,
 				4D93AA1320A4983A00437BBD /* TableViewCell.swift in Sources */,
 				4D37A24A20A9A88800D7CD5C /* ProfileViewController.swift in Sources */,
 				4D95FD1C209BC1710076E0FD /* ViewController.swift in Sources */,
+				4D37A25D20AC9A9D00D7CD5C /* UITextField+BottomBorder.swift in Sources */,
+				4D37A25F20AC9B6000D7CD5C /* LoginService.swift in Sources */,
+				4D37A26120ACA1AA00D7CD5C /* FormValidator.swift in Sources */,
 				4D95FD1A209BC1710076E0FD /* AppDelegate.swift in Sources */,
 				4D37A24C20A9E74300D7CD5C /* NewAccountViewController.swift in Sources */,
+				4D37A25620AC992E00D7CD5C /* Pagination.swift in Sources */,
+				4D37A26720ACBC0200D7CD5C /* UserService.swift in Sources */,
+				4D37A25220AC98DD00D7CD5C /* Error.swift in Sources */,
+				4D37A25420AC990200D7CD5C /* User.swift in Sources */,
+				4D37A26320ACB6F800D7CD5C /* CreateAccount.swift in Sources */,
+				4D37A25A20AC998700D7CD5C /* Database.swift in Sources */,
+				4D37A25020AC98BB00D7CD5C /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

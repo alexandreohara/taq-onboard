@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class NewAccountViewController: UIViewController {
 
@@ -26,58 +24,37 @@ class NewAccountViewController: UIViewController {
     
     fileprivate func validateTextFields() -> Bool {
         
-        let vc: ViewController = ViewController()
+        let validate: FormValidator = FormValidator()
         var isValid: Bool = true
         
-        nameTextField.layer.shadowColor = containOnlyLetters(testStr: nameTextField.text!) == true ? UIColor.gray.cgColor : UIColor.red.cgColor
-        nameError.isHidden = containOnlyLetters(testStr: nameTextField.text!) == true ? true : false
+        nameTextField.layer.shadowColor = validate.containOnlyLetters(testStr: nameTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
+        nameError.isHidden = validate.containOnlyLetters(testStr: nameTextField.text!) ? true : false
         
-        emailTextField.layer.shadowColor = vc.isValidEmail(testStr: emailTextField.text!) == true ? UIColor.gray.cgColor : UIColor.red.cgColor
-        emailError.isHidden = vc.isValidEmail(testStr: emailTextField.text!) == true ? true : false
+        emailTextField.layer.shadowColor = validate.isValidEmail(testStr: emailTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
+        emailError.isHidden = validate.isValidEmail(testStr: emailTextField.text!) ? true : false
         
-        passwordTextField.layer.shadowColor = passwordTextField.text!.count < 4 ? UIColor.red.cgColor : UIColor.gray.cgColor
-        passwordError.isHidden = passwordTextField.text!.count < 4 ? false : true
+        passwordTextField.layer.shadowColor = !validate.isValidPassword(testStr: passwordTextField.text!) ? UIColor.red.cgColor : UIColor.gray.cgColor
+        passwordError.isHidden = !validate.isValidPassword(testStr: passwordTextField.text!) ? false : true
         
         confirmPassTextField.layer.shadowColor = passwordTextField.text! != confirmPassTextField.text! ? UIColor.red.cgColor : UIColor.gray.cgColor
         confirmPasswordError.isHidden = passwordTextField.text! != confirmPassTextField.text! ? false : true
         
-        if (containOnlyLetters(testStr: nameTextField.text!) == false || vc.isValidEmail(testStr: emailTextField.text!) == true ||
-            passwordTextField.text!.count < 4 || passwordTextField.text! != confirmPassTextField.text!) {isValid = false}
+        if (!validate.containOnlyLetters(testStr: nameTextField.text!) || !validate.isValidEmail(testStr: emailTextField.text!) ||
+            !validate.isValidPassword(testStr: passwordTextField.text!) || passwordTextField.text! != confirmPassTextField.text!) {isValid = false}
         
         userRole = admSwitch.isOn ? "admin" : "user"
         return isValid
     }
     
-    func registerNewAccount() {
-        guard let url = URL(string: "https://tq-template-server-sample.herokuapp.com/users") else {return}
-        let header: HTTPHeaders = ["Authorization": UserDefaults.standard.string(forKey: "token")!]
-        let params: [String: Any] = ["name": nameTextField.text!,
-                                     "password": passwordTextField.text!,
-                                     "email": emailTextField.text!,
-                                     "role": userRole]
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
-            guard response.result.isSuccess else {
-                print(response.result.error!)
-                return
-            }
-            let json: JSON = JSON(response.result.value!)
-            print(json)
-        }
-    }
-    
     @IBAction func registerButton(_ sender: Any) {
         if (validateTextFields()) {
-            registerNewAccount()
+            let account = CreateAccount()
+            let params: [String: Any] = ["name": nameTextField.text!,
+                                         "password": passwordTextField.text!,
+                                         "email": emailTextField.text!,
+                                         "role": userRole]
+            account.registerNewAccount(params: params)
         }
-    }
-    
-    func containOnlyLetters(testStr: String) -> Bool {
-        for chr in testStr {
-            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
-                return false
-            }
-        }
-        return true
     }
     
     override func viewDidLoad() {

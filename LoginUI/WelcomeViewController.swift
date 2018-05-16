@@ -19,9 +19,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     fileprivate func navigationSetup() {
         navigationItem.title = "Users"
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
     }
-    
     
     fileprivate func tableViewSetup() {
         tableView.delegate = self
@@ -34,7 +32,9 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         userTextField.text = UserDefaults.standard.string(forKey: "userName")
         tableViewSetup()
         navigationSetup()
-        getUserList { (database) in
+        
+        let userList: UserListService = UserListService()
+        userList.getUserList(page: 0, window: 100) { (database) in
             for user in database.data! {
                 DispatchQueue.main.async {
                     self.usersArray.append(user)
@@ -42,7 +42,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
-        // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,43 +69,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             destinationVC.id = usersArray[(tableView.indexPathForSelectedRow?.row)!].id!
         }
         
-    }
-    
-    func getUserList(completion: @escaping(Database) -> ()) {
-        let baseUrl = "https://tq-template-server-sample.herokuapp.com/users"
-        let queryItemPage = URLQueryItem(name: "pagination", value: "{\"page\": 1 , \"window\": 10}")
-
-        guard var url = URLComponents(string: baseUrl) else {return}
-        url.queryItems = [queryItemPage]
-        
-        var request = URLRequest(url: url.url!)
-        request.httpMethod = "GET"
-        request.setValue(UserDefaults.standard.string(forKey: "token"), forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-            var responseDatabase: Database
-            if let requestError = error {
-                print(requestError)
-                return
-            }
-            
-            guard let data = data else { return }
-            do {
-                
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(Database.self, from: data)
-
-                if response.data != nil {
-                    responseDatabase = response
-                    completion(responseDatabase)
-                }
-                
-            } catch let err {
-                print(err)
-                return
-            }
-        }
-        task.resume()
     }
     
     fileprivate func welcomeAnimation() {
