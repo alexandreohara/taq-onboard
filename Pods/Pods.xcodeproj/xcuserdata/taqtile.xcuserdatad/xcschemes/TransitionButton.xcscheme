@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "204F8F6AAC6E9220E6D32BFF725DB682"
-               BlueprintName = "SwiftyJSON"
+               BlueprintIdentifier = "1E09BD54278E772CB7B513DCD5F792E1"
+               BlueprintName = "TransitionButton"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SwiftyJSON.framework">
+               BuildableName = "TransitionButton.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

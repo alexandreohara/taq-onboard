@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.7.2)
   - SwiftyJSON (4.1.0)
+  - TransitionButton (0.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - SwiftyJSON (~> 4.0)
+  - TransitionButton
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - SwiftyJSON
+    - TransitionButton
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  TransitionButton: d271030914c84a00b54b4d983446944d2875e7ba
 
-PODFILE CHECKSUM: e2005077f9080b19a90e3ecf04c9e48b340d7b33
+PODFILE CHECKSUM: 0b0a29c2f1fa288ec47f36b986f2fbd4e7bce599
 
 COCOAPODS: 1.5.0

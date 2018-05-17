@@ -94,10 +94,4 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         welcomeAnimation()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }

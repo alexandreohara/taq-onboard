@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KA5-yX-cAw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KA5-yX-cAw" customClass="TransitionButton" customModule="TransitionButton">
                                 <rect key="frame" x="38.5" y="312.5" width="298" height="42"/>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -36,7 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="button:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dw8-Ze-FIH"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1YZ-JS-QRN"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="admin@taqtile.com" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nWK-PE-oUv">
@@ -112,12 +112,13 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="I9x-pz-PAw" id="8uU-Mv-O20"/>
+                        <outlet property="button" destination="KA5-yX-cAw" id="pkv-qj-XXb"/>
                         <outlet property="emailError" destination="Iof-tG-Zom" id="AGS-cD-Otk"/>
                         <outlet property="emailTextField" destination="nWK-PE-oUv" id="OMU-K0-q6z"/>
                         <outlet property="errorMessage" destination="hOe-KX-esv" id="EQ3-pK-A3N"/>
                         <outlet property="passwordError" destination="l4v-Pg-UAJ" id="QzF-N4-sbe"/>
                         <outlet property="passwordTextField" destination="TH3-ry-NJP" id="YWU-0h-FhD"/>
-                        <segue destination="uRK-hM-PUw" kind="show" identifier="goToWelcome" id="4xV-dt-c9P"/>
+                        <segue destination="uRK-hM-PUw" kind="modal" identifier="goToWelcome" modalTransitionStyle="crossDissolve" id="4xV-dt-c9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

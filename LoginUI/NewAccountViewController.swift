@@ -28,16 +28,16 @@ class NewAccountViewController: UIViewController {
         var isValid: Bool = true
         
         nameTextField.layer.shadowColor = validate.containOnlyLetters(testStr: nameTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
-        nameError.isHidden = validate.containOnlyLetters(testStr: nameTextField.text!) ? true : false
+        nameError.isHidden = validate.containOnlyLetters(testStr: nameTextField.text!)
         
         emailTextField.layer.shadowColor = validate.isValidEmail(testStr: emailTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
-        emailError.isHidden = validate.isValidEmail(testStr: emailTextField.text!) ? true : false
+        emailError.isHidden = validate.isValidEmail(testStr: emailTextField.text!)
         
-        passwordTextField.layer.shadowColor = !validate.isValidPassword(testStr: passwordTextField.text!) ? UIColor.red.cgColor : UIColor.gray.cgColor
-        passwordError.isHidden = !validate.isValidPassword(testStr: passwordTextField.text!) ? false : true
+        passwordTextField.layer.shadowColor = validate.isValidPassword(testStr: passwordTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
+        passwordError.isHidden = validate.isValidPassword(testStr: passwordTextField.text!)
         
         confirmPassTextField.layer.shadowColor = passwordTextField.text! != confirmPassTextField.text! ? UIColor.red.cgColor : UIColor.gray.cgColor
-        confirmPasswordError.isHidden = passwordTextField.text! != confirmPassTextField.text! ? false : true
+        confirmPasswordError.isHidden = passwordTextField.text! != confirmPassTextField.text!
         
         if (!validate.containOnlyLetters(testStr: nameTextField.text!) || !validate.isValidEmail(testStr: emailTextField.text!) ||
             !validate.isValidPassword(testStr: passwordTextField.text!) || passwordTextField.text! != confirmPassTextField.text!) {isValid = false}

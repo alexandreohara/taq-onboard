@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TransitionButton
 
 class ViewController: UIViewController {
     
@@ -17,33 +18,49 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordError: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var button: TransitionButton!
     
-    fileprivate func validateLogin() {
+    fileprivate func validateLogin() -> Bool {
         let validate: FormValidator = FormValidator()
-        emailTextField.layer.shadowColor = !validate.isValidEmail(testStr: emailTextField.text!) ? UIColor.red.cgColor : UIColor.gray.cgColor
-        emailError.isHidden = !validate.isValidEmail(testStr: emailTextField.text!) ? false : true
+        var isValid = true
         
-        passwordTextField.layer.shadowColor = !validate.isValidPassword(testStr: passwordTextField.text!) ? UIColor.red.cgColor : UIColor.gray.cgColor
-        passwordError.isHidden = !validate.isValidPassword(testStr: passwordTextField.text!) ? false : true
+        emailTextField.layer.shadowColor = validate.isValidEmail(testStr: emailTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
+        emailError.isHidden = validate.isValidEmail(testStr: emailTextField.text!)
+        
+        passwordTextField.layer.shadowColor = validate.isValidPassword(testStr: passwordTextField.text!) ? UIColor.gray.cgColor : UIColor.red.cgColor
+        passwordError.isHidden = validate.isValidPassword(testStr: passwordTextField.text!)
+        
+        if (!validate.isValidEmail(testStr: emailTextField.text!) ||
+            !validate.isValidPassword(testStr: passwordTextField.text!)) {isValid = false}
+        return isValid
     }
     
-    @IBAction func button(_ sender: Any) {
-        validateLogin()
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        let login: LoginService = LoginService()
-        login.remoteLogin(email: emailTextField.text!, password: passwordTextField.text!, completion: { (success) -> Void in
-            DispatchQueue.main.async {
-                if success {
-                    self.performSegue(withIdentifier: "goToWelcome", sender: self)
-                    self.activityIndicator.stopAnimating()
+    @IBAction func login(_ sender: Any) {
+        errorMessage.isHidden = true
+        if (validateLogin()) {
+            button.startAnimation()
+            
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            
+            let loginService: LoginService = LoginService()
+            loginService.remoteLogin(email: emailTextField.text!, password: passwordTextField.text!, completion: { (success) -> Void in
+                DispatchQueue.main.async {
+                    if success {
+                        self.activityIndicator.stopAnimating()
+                        self.button.stopAnimation(animationStyle: .expand, completion: {
+                            self.performSegue(withIdentifier: "goToWelcome", sender: self)
+                        })
+                    }
+                    else {
+                        self.errorMessage.isHidden = false
+                        self.activityIndicator.stopAnimating()
+                        self.button.stopAnimation(animationStyle: .shake, completion: {
+                        })
+                    }
                 }
-                else{
-                    self.errorMessage.isHidden = false
-                    self.activityIndicator.stopAnimating()
-                }
-            }
-        })
+            })
+        }
     }
 
     override func viewDidLoad() {
@@ -51,12 +68,9 @@ class ViewController: UIViewController {
         
         emailTextField.setBottomBorder()
         passwordTextField.setBottomBorder()
+        button.cornerRadius = 10
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+        
+        
+    }    
 }

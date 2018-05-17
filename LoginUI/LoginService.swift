@@ -41,19 +41,12 @@ class LoginService {
                     UserDefaults.standard.set(response.data?.user?.name, forKey: "userName")
                     UserDefaults.standard.set(response.data?.token, forKey: "token")
                     self.loginResult = true
-                    completion(self.loginResult)
                 }
-                else {
-                    completion(self.loginResult)
-                    return
-                }
-                
-                
+
             } catch let err {
-                completion(self.loginResult)
                 print(err)
-                return
             }
+            completion(self.loginResult)
         }
         task.resume()
     }
