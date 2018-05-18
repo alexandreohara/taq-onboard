@@ -14,32 +14,16 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var textView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    //var users = ["Tiba", "Alexandre", "Gabriel", "Leandro", "Rodrigo"]
-    //var roles = ["Administrator", "User", "User", "User", "User"]
     var usersArray: [User] = []
-    //var nameArray: [String] = []
-    //var roleArray: [String] = []
-    
-    fileprivate func navigationSetup() {
-        navigationItem.title = "Users"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-    }
-    
-    
-    fileprivate func tableViewSetup() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.alpha = 0
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userTextField.text = UserDefaults.standard.string(forKey: "userName")
         tableViewSetup()
         navigationSetup()
-        getUserList { (database) in
+        
+        let userListService: UserListService = UserListService()
+        userListService.getList(page: 0, window: 100) { (database) in
             for user in database.data! {
                 DispatchQueue.main.async {
                     self.usersArray.append(user)
@@ -47,11 +31,20 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        welcomeAnimation()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? ProfileViewController {
+            destinationVC.id = usersArray[(tableView.indexPathForSelectedRow?.row)!].id!
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return usersArray.count
     }
     
@@ -59,7 +52,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! TableViewCell
         cell.userText.text = usersArray[indexPath.row].name
         cell.roleText.text = usersArray[indexPath.row].role
-        //cell.userText.text = usersArrau[indexPath.row].name
         return cell
     }
     
@@ -71,50 +63,15 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         performSegue(withIdentifier: "showDetails", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? ProfileViewController {
-            destinationVC.id = usersArray[(tableView.indexPathForSelectedRow?.row)!].id!
-        }
-        
+    fileprivate func navigationSetup() {
+        navigationItem.title = "Users"
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    func getUserList(completion: @escaping(Database) -> ()) {
-        let baseUrl = "https://tq-template-server-sample.herokuapp.com/users"
-        let queryItemPage = URLQueryItem(name: "pagination", value: "{\"page\": 1 , \"window\": 10}")
-
-        guard var url = URLComponents(string: baseUrl) else {return}
-        url.queryItems = [queryItemPage]
-        
-        var request = URLRequest(url: url.url!)
-        request.httpMethod = "GET"
-        request.setValue(UserDefaults.standard.string(forKey: "token"), forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-            var responseDatabase: Database
-            if let requestError = error {
-                print(requestError)
-                return
-            }
-            
-            guard let data = data else { return }
-            do {
-                //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                //print(json)
-                
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(Database.self, from: data)
-
-                if response.data != nil {
-                    responseDatabase = response
-                    completion(responseDatabase)
-                }
-                
-            } catch let err {
-                print(err)
-                return
-            }
-        }
-        task.resume()
+    fileprivate func tableViewSetup() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.alpha = 0
     }
     
     fileprivate func welcomeAnimation() {
@@ -136,25 +93,4 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        welcomeAnimation()
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
