@@ -22,6 +22,27 @@ class NewAccountViewController: UIViewController {
     
     var userRole: String = ""
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameTextField.setBottomBorder() 
+        emailTextField.setBottomBorder()
+        passwordTextField.setBottomBorder()
+        confirmPassTextField.setBottomBorder()
+        navigationItem.title = "Create new account"
+    }
+    
+    @IBAction func registerButton(_ sender: Any) {
+        if (validateTextFields()) {
+            let account = Account()
+            let params: [String: Any] = ["name": nameTextField.text!,
+                                         "password": passwordTextField.text!,
+                                         "email": emailTextField.text!,
+                                         "role": userRole]
+            account.create(params: params)
+        }
+        
+    }
+    
     fileprivate func validateTextFields() -> Bool {
         
         let validate: FormValidator = FormValidator()
@@ -44,30 +65,6 @@ class NewAccountViewController: UIViewController {
         
         userRole = admSwitch.isOn ? "admin" : "user"
         return isValid
-    }
-    
-    @IBAction func registerButton(_ sender: Any) {
-        if (validateTextFields()) {
-            let account = CreateAccount()
-            let params: [String: Any] = ["name": nameTextField.text!,
-                                         "password": passwordTextField.text!,
-                                         "email": emailTextField.text!,
-                                         "role": userRole]
-            account.registerNewAccount(params: params)
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nameTextField.setBottomBorder()
-        emailTextField.setBottomBorder()
-        passwordTextField.setBottomBorder()
-        confirmPassTextField.setBottomBorder()
-        navigationItem.title = "Create new account"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
 }

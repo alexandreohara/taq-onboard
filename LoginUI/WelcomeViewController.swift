@@ -16,25 +16,14 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var usersArray: [User] = []
     
-    fileprivate func navigationSetup() {
-        navigationItem.title = "Users"
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    fileprivate func tableViewSetup() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.alpha = 0
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         userTextField.text = UserDefaults.standard.string(forKey: "userName")
         tableViewSetup()
         navigationSetup()
         
-        let userList: UserListService = UserListService()
-        userList.getUserList(page: 0, window: 100) { (database) in
+        let userListService: UserListService = UserListService()
+        userListService.getList(page: 0, window: 100) { (database) in
             for user in database.data! {
                 DispatchQueue.main.async {
                     self.usersArray.append(user)
@@ -44,8 +33,18 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        welcomeAnimation()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? ProfileViewController {
+            destinationVC.id = usersArray[(tableView.indexPathForSelectedRow?.row)!].id!
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return usersArray.count
     }
     
@@ -64,11 +63,15 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         performSegue(withIdentifier: "showDetails", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? ProfileViewController {
-            destinationVC.id = usersArray[(tableView.indexPathForSelectedRow?.row)!].id!
-        }
-        
+    fileprivate func navigationSetup() {
+        navigationItem.title = "Users"
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    fileprivate func tableViewSetup() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.alpha = 0
     }
     
     fileprivate func welcomeAnimation() {
@@ -88,10 +91,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
                 })
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        welcomeAnimation()
     }
     
 }

@@ -7,47 +7,34 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 class LoginService {
-    var loginResult: Bool = false
-    func remoteLogin(email: String, password: String, completion: @escaping (Bool)->()) {
-        loginResult = false
+    
+    var error: String = ""
+    func login(email: String, password: String, completion: @escaping (Bool)->()) {
         guard let url = URL(string: "https://tq-template-server-sample.herokuapp.com/authenticate") else {return}
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-type")
-        
-        let postDictionary = ["email": email,
-                              "password": password,
-                              "rememberMe": false] as [String : Any]
-        do {
-            let jsonBody = try JSONSerialization.data(withJSONObject: postDictionary, options: [])
-            request.httpBody = jsonBody
-        } catch{}
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-            
-            if let requestError = error {
-                print(requestError)
+        let params = ["email": email,
+                      "password": password,
+                      "rememberMe": false] as [String : Any]
+        let header: HTTPHeaders = ["Content-type": "application/json"]
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            guard response.result.isSuccess else {
+                print(response.result.error!)
+                completion(false)
                 return
             }
-            
-            guard let data = data else { return }
-            do {
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(Login.self, from: data)
-                
-                if response.data != nil {
-                    UserDefaults.standard.set(response.data?.user?.name, forKey: "userName")
-                    UserDefaults.standard.set(response.data?.token, forKey: "token")
-                    self.loginResult = true
-                }
-
-            } catch let err {
-                print(err)
+            let json: JSON = JSON(response.result.value!)
+            if let data = json["data"].dictionary {
+                UserDefaults.standard.set(data["user"]!["name"].string, forKey: "userName")
+                UserDefaults.standard.set(data["token"]!.string, forKey: "token")
+                completion(true)
             }
-            completion(self.loginResult)
+            else{
+                self.error = json["errors"][0]["message"].string!
+                completion(false)
+            }
         }
-        task.resume()
     }
 }

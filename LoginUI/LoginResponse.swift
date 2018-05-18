@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Login: Codable {
+struct LoginResponse: Codable {
     let data: Data?
     let errors: [Error]?
 }

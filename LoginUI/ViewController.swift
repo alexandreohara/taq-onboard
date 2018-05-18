@@ -11,14 +11,46 @@ import TransitionButton
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var button: TransitionButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var emailError: UILabel!
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordError: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessage: UILabel!
-    @IBOutlet weak var button: TransitionButton!
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.bringSubview(toFront: button)
+        emailTextField.setBottomBorder()
+        passwordTextField.setBottomBorder()
+        button.cornerRadius = 21
+    }
+    
+    @IBAction func loginButton(_ sender: Any) {
+        errorMessage.isHidden = true
+        if (validateLogin()) {
+            button.startAnimation()
+            
+            let loginService: LoginService = LoginService()
+            loginService.login(email: emailTextField.text!, password: passwordTextField.text!, completion: { (success) -> Void in
+                DispatchQueue.main.async {
+                    if success {
+                        self.button.stopAnimation(animationStyle: .expand, completion: {
+                            self.performSegue(withIdentifier: "goToWelcome", sender: self)
+                        })
+                    }
+                    else {
+                        self.button.stopAnimation(animationStyle: .shake, completion: {
+                            self.errorMessage.text = loginService.error
+                            self.errorMessage.isHidden = false
+                        })
+                    }
+                }
+            })
+        }
+    }
     
     fileprivate func validateLogin() -> Bool {
         let validate: FormValidator = FormValidator()
@@ -32,45 +64,7 @@ class ViewController: UIViewController {
         
         if (!validate.isValidEmail(testStr: emailTextField.text!) ||
             !validate.isValidPassword(testStr: passwordTextField.text!)) {isValid = false}
+        
         return isValid
     }
-    
-    @IBAction func login(_ sender: Any) {
-        errorMessage.isHidden = true
-        if (validateLogin()) {
-            button.startAnimation()
-            
-            activityIndicator.isHidden = false
-            activityIndicator.startAnimating()
-            
-            let loginService: LoginService = LoginService()
-            loginService.remoteLogin(email: emailTextField.text!, password: passwordTextField.text!, completion: { (success) -> Void in
-                DispatchQueue.main.async {
-                    if success {
-                        self.activityIndicator.stopAnimating()
-                        self.button.stopAnimation(animationStyle: .expand, completion: {
-                            self.performSegue(withIdentifier: "goToWelcome", sender: self)
-                        })
-                    }
-                    else {
-                        self.errorMessage.isHidden = false
-                        self.activityIndicator.stopAnimating()
-                        self.button.stopAnimation(animationStyle: .shake, completion: {
-                        })
-                    }
-                }
-            })
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        emailTextField.setBottomBorder()
-        passwordTextField.setBottomBorder()
-        button.cornerRadius = 10
-        
-        
-        
-    }    
 }

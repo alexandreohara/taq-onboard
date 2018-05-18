@@ -16,6 +16,17 @@ class ProfileViewController: UIViewController {
     
     var id: Int?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "Profile"
+        let userService = UserService()
+        userService.getProfile(id: id!) { (profile) in
+            DispatchQueue.main.async {
+                self.displayUserData(profile)
+            }
+        }
+    }
+    
     fileprivate func displayUserData(_ profile: Profile) {
         self.nameLabel.text = profile.data!.name
         self.roleLabel.text = profile.data!.role
@@ -23,21 +34,5 @@ class ProfileViewController: UIViewController {
         self.nameLabel.isHidden = false
         self.roleLabel.isHidden = false
         self.emailLabel.isHidden = false
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = "Profile"
-        let user = UserService()
-        user.getUserProfile(id: id!) { (profile) in
-            DispatchQueue.main.async {
-                self.displayUserData(profile)
-            }
-        }
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

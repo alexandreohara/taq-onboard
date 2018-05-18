@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class CreateAccount {
-    func registerNewAccount(params: [String: Any]) {
+class Account {
+    func create(params: [String: Any]) {
         guard let url = URL(string: "https://tq-template-server-sample.herokuapp.com/users") else {return}
         let header: HTTPHeaders = ["Authorization": UserDefaults.standard.string(forKey: "token")!]
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in

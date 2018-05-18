@@ -36,7 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1YZ-JS-QRN"/>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SoH-qV-JGN"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="admin@taqtile.com" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nWK-PE-oUv">
@@ -71,14 +71,6 @@
                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="I9x-pz-PAw">
-                                <rect key="frame" x="177.5" y="372" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="6Ll-jN-ZvM"/>
-                                    <constraint firstAttribute="height" constant="20" id="bWt-cJ-cRT"/>
-                                </constraints>
-                                <color key="color" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOe-KX-esv">
                                 <rect key="frame" x="38.5" y="361" width="321" height="15"/>
                                 <constraints>
@@ -95,7 +87,6 @@
                             <constraint firstItem="KA5-yX-cAw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0Ho-Fu-Khz"/>
                             <constraint firstItem="Iof-tG-Zom" firstAttribute="leading" secondItem="nWK-PE-oUv" secondAttribute="leading" id="6Iy-9y-0cB"/>
                             <constraint firstItem="Iof-tG-Zom" firstAttribute="top" secondItem="nWK-PE-oUv" secondAttribute="bottom" constant="7" id="DX3-8o-rd1"/>
-                            <constraint firstItem="I9x-pz-PAw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Dj5-gV-u1h"/>
                             <constraint firstItem="TH3-ry-NJP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HdI-yA-Qb3"/>
                             <constraint firstItem="l4v-Pg-UAJ" firstAttribute="leading" secondItem="TH3-ry-NJP" secondAttribute="leading" id="Jno-fE-7Wd"/>
                             <constraint firstItem="TH3-ry-NJP" firstAttribute="top" secondItem="nWK-PE-oUv" secondAttribute="bottom" constant="64.5" id="LBe-JP-wfb"/>
@@ -103,7 +94,6 @@
                             <constraint firstItem="hOe-KX-esv" firstAttribute="leading" secondItem="KA5-yX-cAw" secondAttribute="leading" id="hf8-BZ-RVq"/>
                             <constraint firstItem="nWK-PE-oUv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oXj-Ev-O9F"/>
                             <constraint firstItem="hOe-KX-esv" firstAttribute="top" secondItem="KA5-yX-cAw" secondAttribute="bottom" constant="6.5" id="p6g-w2-kF6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="I9x-pz-PAw" secondAttribute="bottom" constant="275" id="sPA-eV-Xjt"/>
                             <constraint firstItem="KA5-yX-cAw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vDW-PW-JY3"/>
                             <constraint firstItem="nWK-PE-oUv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="102.5" id="wBd-WR-Dvm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hOe-KX-esv" secondAttribute="bottom" constant="291" id="x1O-HO-9Pl"/>
@@ -111,7 +101,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="I9x-pz-PAw" id="8uU-Mv-O20"/>
                         <outlet property="button" destination="KA5-yX-cAw" id="pkv-qj-XXb"/>
                         <outlet property="emailError" destination="Iof-tG-Zom" id="AGS-cD-Otk"/>
                         <outlet property="emailTextField" destination="nWK-PE-oUv" id="OMU-K0-q6z"/>
@@ -374,7 +363,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
+                                        <integer key="value" value="16"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

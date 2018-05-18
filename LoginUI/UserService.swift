@@ -7,41 +7,28 @@
 //
 
 import UIKit
+import Alamofire
 
 class UserService {
-    func getUserProfile(id: Int, completion: @escaping(Profile) -> ()) {
+    func getProfile(id: Int, completion: @escaping(Profile) -> ()) {
         let baseUrl = "https://tq-template-server-sample.herokuapp.com/users/" + String(id)
-        
         guard let url = URL(string: baseUrl) else {return}
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(UserDefaults.standard.string(forKey: "token"), forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-            var responseDatabase: Profile
-            if let requestError = error {
-                print(requestError)
+        let header: HTTPHeaders = ["Authorization": UserDefaults.standard.string(forKey: "token")!]
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default , headers: header).responseData{ (response) in
+            guard response.result.isSuccess else {
+                print(response.result.error!)
                 return
             }
-            
-            guard let data = data else { return }
+            guard let data = response.result.value else {return}
             do {
-                
                 let decoder = JSONDecoder()
-                let response = try decoder.decode(Profile.self, from: data)
-                
-                if response.data != nil {
-                    responseDatabase = response
-                    completion(responseDatabase)
-                }
-                
-            } catch let err {
+                let profileResponse = try decoder.decode(Profile.self, from: data)
+                completion(profileResponse)
+            }
+            catch let err {
                 print(err)
-                return
             }
         }
-        task.resume()
     }
 }
 
